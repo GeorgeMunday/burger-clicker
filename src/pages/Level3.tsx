@@ -10,7 +10,7 @@ import type { EarnPointsProps } from "../types/EarnPointsProps";
 import React, { useEffect, useRef } from "react";
 // ...existing imports...
 
-const Level2: React.FC<EarnPointsProps> = ({
+const Level3: React.FC<EarnPointsProps> = ({
   points,
   setPoints,
   levelCap,
@@ -67,4 +67,4 @@ const Level2: React.FC<EarnPointsProps> = ({
   );
 };
 
-export default Level2;
+export default Level3;

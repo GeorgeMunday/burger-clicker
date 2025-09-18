@@ -2,7 +2,14 @@ import { useState } from "react";
 import { EarnPointsProps } from "../../types/EarnPointsProps";
 import BuyItems from "../BuyMenu/BuyItems";
 
-const OpenMenu = ({ setNum, points, num, setPoints }: EarnPointsProps) => {
+const OpenMenu = ({
+  setNum,
+  points,
+  num,
+  setPoints,
+  pointsPS,
+  setPointsPS,
+}: EarnPointsProps) => {
   const buttonStyle = "px-4 py-2 bg-blue-500 text-white rounded";
   const [menu, setMenu] = useState(false);
 
@@ -28,6 +35,8 @@ const OpenMenu = ({ setNum, points, num, setPoints }: EarnPointsProps) => {
             num={num}
             setNum={setNum}
             setPoints={setPoints}
+            pointsPS={pointsPS}
+            setPointsPS={setPointsPS}
           />
         </div>
       </div>
