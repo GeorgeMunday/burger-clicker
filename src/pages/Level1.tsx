@@ -22,6 +22,7 @@ const Level1 = ({
       <Points points={points} />
       <EarnPoints num={num} points={points} setPoints={setPoints} />
       <NextLevels canGoNext={!!canGoNext} onNextLevel={onNextLevel!} />
+
       <OpenMenu
         points={points}
         setPoints={setPoints}
