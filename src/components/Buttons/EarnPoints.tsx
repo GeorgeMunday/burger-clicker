@@ -1,4 +1,4 @@
-import { EarnPointsProps } from "../../types/EarnPointsProps";
+import { EarnPointsProps } from "../../types/GameState";
 
 const EarnPoints = ({ num = 0, points, setPoints }: EarnPointsProps) => {
   const handleClick = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EarnPointsProps } from "../../types/EarnPointsProps";
+import { EarnPointsProps } from "../../types/GameState";
 import BuyItems from "../BuyMenu/BuyItems";
 
 const OpenMenu = ({

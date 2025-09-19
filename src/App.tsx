@@ -21,7 +21,7 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);
   const auth = getAuth(app);
 
-  // 🔑 Listen for login/logout
+  // Listen for login/logout
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
@@ -45,7 +45,6 @@ function App() {
     setPoints(0);
   };
 
-  // 🔘 Save progress
   const handleSave = async () => {
     if (!currentUser) return;
     await updateDoc(doc(db, "users", currentUser.uid), {
@@ -54,16 +53,15 @@ function App() {
       num,
       pointsPs,
     });
-    console.log("✅ Stats saved to Firestore");
+    console.log("Stats saved to Firestore");
   };
 
-  // 🔘 Logout
   const handleLogout = async () => {
     await signOut(auth);
-    console.log("👋 Logged out");
+    console.log("Logged out");
   };
 
-  // 👤 Not logged in → login/register
+  //  Not logged in → login/register
   if (!currentUser) {
     if (showRegister) {
       return (
@@ -80,8 +78,6 @@ function App() {
       </>
     );
   }
-
-  // 🎮 Logged in → game + save + logout
   if (levelState === 1) {
     return (
       <>

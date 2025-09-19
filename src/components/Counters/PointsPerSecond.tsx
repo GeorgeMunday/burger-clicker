@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { EarnPointsProps } from "../../types/EarnPointsProps";
+import { EarnPointsProps } from "../../types/GameState";
 
 const AutoPoints = ({ pointsPS, setPoints }: EarnPointsProps) => {
   useEffect(() => {

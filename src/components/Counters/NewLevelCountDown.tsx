@@ -1,4 +1,4 @@
-import { EarnPointsProps } from "../../types/EarnPointsProps";
+import { EarnPointsProps } from "../../types/GameState";
 
 const NewLevelCountDown = ({ levelCap, points }: EarnPointsProps) => {
   const progress = Math.min((points / levelCap) * 100, 100);

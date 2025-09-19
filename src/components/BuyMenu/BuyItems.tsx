@@ -1,4 +1,4 @@
-import { EarnPointsProps } from "../../types/EarnPointsProps";
+import { EarnPointsProps } from "../../types/GameState";
 import { getAuth } from "firebase/auth";
 import { db } from "../../firebase/firebase";
 import { doc, updateDoc } from "firebase/firestore";

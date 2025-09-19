@@ -35,7 +35,7 @@ const RegisterPage: React.FC = () => {
         points: 0,
         level: 1,
         num: 1,
-        pointsPs: 1,
+        pointsPs: 0,
       });
 
       console.log("✅ User registered and stored in Firestore:", user.uid);

@@ -5,9 +5,7 @@ import NewLevelCountDown from "../components/Counters/NewLevelCountDown";
 import Points from "../components/Counters/Points";
 import PointsPerSecond from "../components/Counters/PointsPerSecond";
 import NextLevels from "../components/Navigators/NextLevels";
-import { EarnPointsProps } from "../types/EarnPointsProps";
-
-import React, { useEffect, useRef } from "react";
+import { EarnPointsProps } from "../types/GameState";
 
 const Level1 = ({
   points,
@@ -20,19 +18,6 @@ const Level1 = ({
   setPointsPS,
   pointsPS,
 }: EarnPointsProps) => {
-  // Always use the latest pointsPS value in the interval
-  const pointsPSRef = useRef(pointsPS);
-  useEffect(() => {
-    pointsPSRef.current = pointsPS;
-  }, [pointsPS]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPoints((prev) => prev + pointsPSRef.current);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [setPoints]);
-
   return (
     <>
       <Heading />

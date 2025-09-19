@@ -5,10 +5,7 @@ import Points from "../components/Counters/Points";
 import NextLevels from "../components/Navigators/NextLevels";
 import OpenMenu from "../components/Buttons/OpenMenu";
 import PointsPerSecond from "../components/Counters/PointsPerSecond";
-import type { EarnPointsProps } from "../types/EarnPointsProps";
-
-import React, { useEffect, useRef } from "react";
-// ...existing imports...
+import type { EarnPointsProps } from "../types/GameState";
 
 const Level3: React.FC<EarnPointsProps> = ({
   points,
@@ -21,19 +18,6 @@ const Level3: React.FC<EarnPointsProps> = ({
   pointsPS,
   setPointsPS,
 }) => {
-  // Always use the latest pointsPS value in the interval
-  const pointsPSRef = useRef(pointsPS);
-  useEffect(() => {
-    pointsPSRef.current = pointsPS;
-  }, [pointsPS]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPoints((prev) => prev + pointsPSRef.current);
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [setPoints]);
-
   return (
     <>
       <Heading />

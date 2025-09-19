@@ -1,4 +1,4 @@
-import { EarnPointsProps } from "../../types/EarnPointsProps";
+import { EarnPointsProps } from "../../types/GameState";
 
 const Points = ({ points }: EarnPointsProps) => {
   return <div>{points}</div>;
