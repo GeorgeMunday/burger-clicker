@@ -7,7 +7,7 @@ import OpenMenu from "../components/Buttons/OpenMenu";
 import PointsPerSecond from "../components/Counters/PointsPerSecond";
 import type { EarnPointsProps } from "../types/GameState";
 
-const Level2: React.FC<EarnPointsProps> = ({
+const Level2: React.FC<EarnPointsProps & { onLogout: () => void }> = ({
   points,
   setPoints,
   levelCap,
@@ -17,10 +17,17 @@ const Level2: React.FC<EarnPointsProps> = ({
   setNum,
   pointsPS,
   setPointsPS,
+  onLogout,
 }) => {
   return (
     <>
       <Heading />
+      <button
+        className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded"
+        onClick={onLogout}
+      >
+        Logout
+      </button>
       <NewLevelCountDown levelCap={levelCap} points={points} />
       <Points points={points} />
       <EarnPoints num={num} points={points} setPoints={setPoints} />

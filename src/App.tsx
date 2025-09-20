@@ -5,27 +5,27 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 import Level1 from "./pages/Level1";
 import Level2 from "./pages/Level2";
-import Register from "./pages/auth/Regester";
-import Login from "./pages/auth/Login";
 import Level3 from "./pages/Level3";
+import Home from "./pages/Home/Home";
+import Final from "./pages/Final";
 
-const levelCaps = [100, 2500, 10000, 2500000, 100000];
+const levelCaps = [100, 2500, 10000];
 
 function App() {
+  // Game stats and points
   const [points, setPoints] = useState(0);
   const [levelState, setLevelState] = useState(1);
   const [num, setNum] = useState(1);
   const [pointsPs, setPointsPs] = useState(0);
-
   const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [showRegister, setShowRegister] = useState(false);
+  const [showGame, setShowGame] = useState(false);
+
   const auth = getAuth(app);
 
-  // Listen for login/logout
+  // listen for login
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
-
       if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
@@ -36,15 +36,18 @@ function App() {
           setPointsPs(data.pointsPs ?? 0);
         }
       }
+      setShowGame(false); // for logout
     });
     return () => unsubscribe();
   }, [auth]);
 
+  // Handle leveling up
   const handleNextLevel = () => {
     setLevelState((prev) => prev + 1);
     setPoints(0);
   };
 
+  // Save stats to Firestore
   const handleSave = async () => {
     if (!currentUser) return;
     await updateDoc(doc(db, "users", currentUser.uid), {
@@ -56,28 +59,22 @@ function App() {
     console.log("Stats saved to Firestore");
   };
 
+  // Handle logout
   const handleLogout = async () => {
     await signOut(auth);
     console.log("Logged out");
   };
 
-  //  Not logged in → login/register
-  if (!currentUser) {
-    if (showRegister) {
-      return (
-        <>
-          <button onClick={() => setShowRegister(false)}>Back to Login</button>
-          <Register />
-        </>
-      );
-    }
+  if (!currentUser || !showGame) {
     return (
-      <>
-        <button onClick={() => setShowRegister(true)}>Register</button>
-        <Login />
-      </>
+      <Home
+        isLoggedIn={!!currentUser}
+        onStartGame={() => setShowGame(true)}
+        onLogout={handleLogout}
+      />
     );
   }
+
   if (levelState === 1) {
     return (
       <>
@@ -91,26 +88,12 @@ function App() {
           setNum={setNum}
           pointsPS={pointsPs}
           setPointsPS={setPointsPs}
+          onLogout={handleLogout}
         />
-        <div className="mt-4 flex gap-2">
-          <button
-            onClick={handleSave}
-            className="bg-green-500 text-white px-4 py-2 rounded"
-          >
-            Save Progress
-          </button>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Logout
-          </button>
-        </div>
+        <button onClick={handleSave}>Save your progress</button>
       </>
     );
-  }
-
-  if (levelState === 2) {
+  } else if (levelState === 2) {
     return (
       <>
         <Level2
@@ -123,25 +106,12 @@ function App() {
           setNum={setNum}
           pointsPS={pointsPs}
           setPointsPS={setPointsPs}
+          onLogout={handleLogout}
         />
-        <div className="mt-4 flex gap-2">
-          <button
-            onClick={handleSave}
-            className="bg-green-500 text-white px-4 py-2 rounded"
-          >
-            Save Progress
-          </button>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Logout
-          </button>
-        </div>
+        <button onClick={handleSave}>Save your progress</button>
       </>
     );
-  }
-  if (levelState === 3) {
+  } else if (levelState === 3) {
     return (
       <>
         <Level3
@@ -154,26 +124,14 @@ function App() {
           setNum={setNum}
           pointsPS={pointsPs}
           setPointsPS={setPointsPs}
+          onLogout={handleLogout}
         />
-        <div className="mt-4 flex gap-2">
-          <button
-            onClick={handleSave}
-            className="bg-green-500 text-white px-4 py-2 rounded"
-          >
-            Save Progress
-          </button>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white px-4 py-2 rounded"
-          >
-            Logout
-          </button>
-        </div>
+        <button onClick={handleSave}>Save your progress</button>
       </>
     );
+  } else {
+    return <Final />;
   }
-
-  return null;
 }
 
 export default App;

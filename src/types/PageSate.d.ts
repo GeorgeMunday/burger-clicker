@@ -1,4 +1,5 @@
-export type PageStates = {
-  isHome: boolean;
-  is;
+export type HomeProps = {
+  onStart: () => void;
+  onLogout: () => void;
+  user: { email: string } | null;
 };
