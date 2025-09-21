@@ -4,13 +4,13 @@ import { EarnPointsProps } from "../../types/GameState";
 const AutoPoints = ({ pointsPS, setPoints }: EarnPointsProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
-      setPoints((prev) => prev + pointsPS); // add points every second
+      setPoints((prev) => prev + pointsPS);
     }, 1000);
 
-    return () => clearInterval(interval); // cleanup on unmount
+    return () => clearInterval(interval);
   }, [pointsPS, setPoints]);
 
-  return null; // this component only runs logic, no UI
+  return null;
 };
 
 export default AutoPoints;

@@ -1,4 +1,4 @@
-import Heading from "../components/Banners/Heading";
+import Logout from "../components/Buttons/Logout";
 import EarnPoints from "../components/Buttons/EarnPoints";
 import NewLevelCountDown from "../components/Counters/NewLevelCountDown";
 import Points from "../components/Counters/Points";
@@ -21,16 +21,38 @@ const Level3: React.FC<EarnPointsProps & { onLogout: () => void }> = ({
 }) => {
   return (
     <>
-      <Heading />
-      <button
-        className="absolute top-4 right-4 bg-red-500 text-white px-4 py-2 rounded"
-        onClick={onLogout}
-      >
-        Logout
-      </button>
-      <NewLevelCountDown levelCap={levelCap} points={points} />
-      <Points points={points} />
-      <EarnPoints num={num} points={points} setPoints={setPoints} />
+      <Logout onLogout={onLogout} />
+      <NewLevelCountDown
+        levelCap={levelCap}
+        points={points}
+        num={num}
+        setNum={setNum}
+        setPoints={setPoints}
+        pointsPS={pointsPS}
+        setPointsPS={setPointsPS}
+      />
+      <Points
+        points={points}
+        num={num}
+        setNum={setNum}
+        setPoints={setPoints}
+        pointsPS={pointsPS}
+        setPointsPS={setPointsPS}
+        levelCap={levelCap}
+        onNextLevel={onNextLevel}
+        canGoNext={canGoNext}
+      />
+      <EarnPoints
+        num={num}
+        points={points}
+        setPoints={setPoints}
+        setNum={setNum}
+        pointsPS={pointsPS}
+        setPointsPS={setPointsPS}
+        levelCap={levelCap}
+        onNextLevel={onNextLevel}
+        canGoNext={canGoNext}
+      />
       <NextLevels canGoNext={!!canGoNext} onNextLevel={onNextLevel!} />
       <OpenMenu
         pointsPS={pointsPS}
