@@ -22,7 +22,20 @@ const Level3: React.FC<EarnPointsProps & { onLogout: () => void }> = ({
   return (
     <main className="flex-1 flex flex-col items-center justify-center min-h-screen bg-[#f5ecd7] text-[#7c5c36] p-4">
       <div className="w-[90vw] h-[90vh] max-w-6xl max-h-[900px] rounded-3xl bg-[#e7dbc3] shadow-2xl p-6 sm:p-8 md:p-10 flex flex-col border border-[#7c5c36] overflow-auto">
-        <Logout onLogout={onLogout} />
+        <div className="flex w-full justify-between items-center mb-2">
+          <Logout onLogout={onLogout} />
+          <OpenMenu
+            pointsPS={pointsPS}
+            setPoints={setPoints}
+            setPointsPS={setPointsPS}
+            points={points}
+            num={num}
+            setNum={setNum}
+            levelCap={levelCap}
+            onNextLevel={onNextLevel}
+            canGoNext={canGoNext}
+          />
+        </div>
         <NewLevelCountDown
           levelCap={levelCap}
           points={points}
@@ -54,18 +67,9 @@ const Level3: React.FC<EarnPointsProps & { onLogout: () => void }> = ({
           onNextLevel={onNextLevel}
           canGoNext={canGoNext}
         />
-        <NextLevels canGoNext={!!canGoNext} onNextLevel={onNextLevel!} />
-        <OpenMenu
-          pointsPS={pointsPS}
-          setPoints={setPoints}
-          setPointsPS={setPointsPS}
-          points={points}
-          num={num}
-          setNum={setNum}
-          levelCap={levelCap}
-          onNextLevel={onNextLevel}
-          canGoNext={canGoNext}
-        />
+        <div className="flex-1 flex flex-col justify-end">
+          <NextLevels canGoNext={!!canGoNext} onNextLevel={onNextLevel!} />
+        </div>
         <PointsPerSecond
           pointsPS={pointsPS}
           setPoints={setPoints}
