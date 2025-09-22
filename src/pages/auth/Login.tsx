@@ -24,9 +24,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h2 className="text-3xl font-extrabold mb-6 text-center text-blue-700 drop-shadow-xl tracking-tight font-sans">
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="bg-[#f5ecd7] border border-[#e7dbc3] rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center text-[#7c5c36]">
           Login
         </h2>
         <form onSubmit={handleLogin} className="space-y-5 w-full">
@@ -37,7 +37,7 @@ const LoginPage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg"
+              className="w-full px-4 py-3 border border-[#a6895b] bg-[#fffaf3] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#a6895b] text-lg text-[#7c5c36]"
             />
           </div>
           <div>
@@ -47,7 +47,7 @@ const LoginPage = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 text-lg"
+              className="w-full px-4 py-3 border border-[#a6895b] bg-[#fffaf3] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#a6895b] text-lg text-[#7c5c36]"
             />
           </div>
           {error && (
@@ -57,7 +57,7 @@ const LoginPage = () => {
           )}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold py-3 rounded-xl shadow-xl text-xl transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400"
+            className="w-full bg-[#7c5c36] hover:bg-[#a6895b] text-[#f5ecd7] font-bold py-3 rounded-xl shadow-xl text-xl transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-[#e7dbc3]"
           >
             Login
           </button>

@@ -33,5 +33,12 @@ export default function SaveProgressButton({
     }
   };
 
-  return <button onClick={handleSave}>Save your progress</button>;
+  return (
+    <button
+      onClick={handleSave}
+      className="fixed bottom-6 right-6 z-50 bg-[#7c5c36] text-[#f5ecd7] font-bold py-3 px-6 rounded-xl shadow-lg border border-[#a6895b] hover:bg-[#a6895b] transition-colors text-lg"
+    >
+      Save your progress
+    </button>
+  );
 }

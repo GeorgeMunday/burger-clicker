@@ -7,7 +7,7 @@ import Level1 from "./pages/Level1";
 import Level2 from "./pages/Level2";
 import Level3 from "./pages/Level3";
 import Home from "./pages/Home/Home";
-import Final from "./pages/Final";
+import Final from "./components/Banners/Final";
 import SaveProgressButton from "./components/Buttons/SaveProgressButton";
 
 const levelCaps = [100, 2500, 10000];
@@ -24,7 +24,7 @@ function App() {
   const auth = getAuth(app);
 
   // Centering style
-  const centeredClass = "flex justify-center items-center h-screen";
+  const centeredClass = "flex justify-center items-center h-screen bg-beige";
 
   // listen for login
   useEffect(() => {
@@ -141,10 +141,10 @@ function App() {
         />
       </div>
     );
-  } else {
+  } else if (levelState === 4) {
     return (
       <div className={centeredClass}>
-        <Final />
+        <Final onLogout={handleLogout} />
       </div>
     );
   }

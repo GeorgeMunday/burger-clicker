@@ -13,7 +13,8 @@ const OpenMenu = ({
   onNextLevel,
   canGoNext,
 }: EarnPointsProps) => {
-  const buttonStyle = "px-4 py-2 bg-blue-500 text-white rounded";
+  const buttonStyle =
+    "px-4 py-2 bg-[#7c5c36] text-[#f5ecd7] rounded shadow font-semibold border border-[#a6895b] hover:bg-[#a6895b] transition-colors";
   const [menu, setMenu] = useState(false);
 
   const handleMenu = () => {
@@ -32,7 +33,7 @@ const OpenMenu = ({
         <button className={buttonStyle} onClick={handleMenu}>
           Close Menu
         </button>
-        <div className="mt-2 p-4 border rounded shadow">
+        <div className="mt-2 p-4 border border-[#a6895b] rounded-2xl shadow bg-[#f5ecd7]">
           <BuyItems
             points={points}
             num={num}

@@ -20,63 +20,65 @@ const Level2: React.FC<EarnPointsProps & { onLogout: () => void }> = ({
   onLogout,
 }) => {
   return (
-    <>
-      <Logout onLogout={onLogout} />
-      <NewLevelCountDown
-        levelCap={levelCap}
-        points={points}
-        num={num}
-        setNum={setNum}
-        setPoints={setPoints}
-        pointsPS={pointsPS}
-        setPointsPS={setPointsPS}
-      />
-      <Points
-        points={points}
-        num={num}
-        setNum={setNum}
-        setPoints={setPoints}
-        pointsPS={pointsPS}
-        setPointsPS={setPointsPS}
-        levelCap={levelCap}
-        onNextLevel={onNextLevel}
-        canGoNext={canGoNext}
-      />
-      <EarnPoints
-        num={num}
-        points={points}
-        setPoints={setPoints}
-        setNum={setNum}
-        pointsPS={pointsPS}
-        setPointsPS={setPointsPS}
-        levelCap={levelCap}
-        onNextLevel={onNextLevel}
-        canGoNext={canGoNext}
-      />
-      <NextLevels canGoNext={!!canGoNext} onNextLevel={onNextLevel!} />
-      <OpenMenu
-        pointsPS={pointsPS}
-        setPoints={setPoints}
-        setPointsPS={setPointsPS}
-        points={points}
-        num={num}
-        setNum={setNum}
-        levelCap={levelCap}
-        onNextLevel={onNextLevel}
-        canGoNext={canGoNext}
-      />
-      <PointsPerSecond
-        pointsPS={pointsPS}
-        setPoints={setPoints}
-        setPointsPS={setPointsPS}
-        points={points}
-        num={num}
-        setNum={setNum}
-        levelCap={levelCap}
-        onNextLevel={onNextLevel}
-        canGoNext={canGoNext}
-      />
-    </>
+    <main className="flex-1 flex flex-col items-center justify-center min-h-screen bg-[#f5ecd7] text-[#7c5c36] p-4">
+      <div className="w-[90vw] h-[90vh] max-w-6xl max-h-[900px] rounded-3xl bg-[#e7dbc3] shadow-2xl p-6 sm:p-8 md:p-10 flex flex-col border border-[#7c5c36] overflow-auto">
+        <Logout onLogout={onLogout} />
+        <NewLevelCountDown
+          levelCap={levelCap}
+          points={points}
+          num={num}
+          setNum={setNum}
+          setPoints={setPoints}
+          pointsPS={pointsPS}
+          setPointsPS={setPointsPS}
+        />
+        <Points
+          points={points}
+          num={num}
+          setNum={setNum}
+          setPoints={setPoints}
+          pointsPS={pointsPS}
+          setPointsPS={setPointsPS}
+          levelCap={levelCap}
+          onNextLevel={onNextLevel}
+          canGoNext={canGoNext}
+        />
+        <EarnPoints
+          num={num}
+          points={points}
+          setPoints={setPoints}
+          setNum={setNum}
+          pointsPS={pointsPS}
+          setPointsPS={setPointsPS}
+          levelCap={levelCap}
+          onNextLevel={onNextLevel}
+          canGoNext={canGoNext}
+        />
+        <NextLevels canGoNext={!!canGoNext} onNextLevel={onNextLevel!} />
+        <OpenMenu
+          pointsPS={pointsPS}
+          setPoints={setPoints}
+          setPointsPS={setPointsPS}
+          points={points}
+          num={num}
+          setNum={setNum}
+          levelCap={levelCap}
+          onNextLevel={onNextLevel}
+          canGoNext={canGoNext}
+        />
+        <PointsPerSecond
+          pointsPS={pointsPS}
+          setPoints={setPoints}
+          setPointsPS={setPointsPS}
+          points={points}
+          num={num}
+          setNum={setNum}
+          levelCap={levelCap}
+          onNextLevel={onNextLevel}
+          canGoNext={canGoNext}
+        />
+      </div>
+    </main>
   );
 };
 

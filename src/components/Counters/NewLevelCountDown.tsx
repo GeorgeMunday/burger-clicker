@@ -6,18 +6,20 @@ const NewLevelCountDown = ({ levelCap, points }: EarnPointsProps) => {
   return (
     <div className="space-y-2">
       {/* Progress bar */}
-      <div className="w-full bg-gray-200  h-15 dark:bg-gray-700">
+      <div className="w-full bg-[#e7dbc3] h-6 rounded-full border border-[#7c5c36]">
         <div
-          className="bg-blue-600 h-15  transition-all duration-300"
+          className="bg-[#7c5c36] h-6 rounded-full transition-all duration-300"
           style={{ width: `${progress}%` }}
         />
       </div>
 
       {/* Text below */}
       {points < levelCap ? (
-        <div className="">{levelCap - points} points left</div>
+        <div className="text-[#7c5c36] font-semibold">
+          {levelCap - points} points left
+        </div>
       ) : (
-        <div>Go to next level</div>
+        <div className="text-[#7c5c36] font-semibold">Go to next level</div>
       )}
     </div>
   );
