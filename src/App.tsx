@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, User, signOut } from "firebase/auth";
 import { app, db } from "./firebase/firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 import Level1 from "./pages/Level1";
 import Level2 from "./pages/Level2";
 import Level3 from "./pages/Level3";
 import Home from "./pages/Home/Home";
 import Final from "./pages/Final";
+import SaveProgressButton from "./components/Buttons/SaveProgressButton";
 
 const levelCaps = [100, 2500, 10000];
 
@@ -21,6 +22,9 @@ function App() {
   const [showGame, setShowGame] = useState(false);
 
   const auth = getAuth(app);
+
+  // Centering style
+  const centeredClass = "flex justify-center items-center h-screen";
 
   // listen for login
   useEffect(() => {
@@ -47,18 +51,6 @@ function App() {
     setPoints(0);
   };
 
-  // Save stats to Firestore
-  const handleSave = async () => {
-    if (!currentUser) return;
-    await updateDoc(doc(db, "users", currentUser.uid), {
-      points,
-      level: levelState,
-      num,
-      pointsPs,
-    });
-    console.log("Stats saved to Firestore");
-  };
-
   // Handle logout
   const handleLogout = async () => {
     await signOut(auth);
@@ -67,17 +59,19 @@ function App() {
 
   if (!currentUser || !showGame) {
     return (
-      <Home
-        isLoggedIn={!!currentUser}
-        onStartGame={() => setShowGame(true)}
-        onLogout={handleLogout}
-      />
+      <div className={centeredClass}>
+        <Home
+          isLoggedIn={!!currentUser}
+          onStartGame={() => setShowGame(true)}
+          onLogout={handleLogout}
+        />
+      </div>
     );
   }
 
   if (levelState === 1) {
     return (
-      <>
+      <div className={centeredClass}>
         <Level1
           points={points}
           setPoints={setPoints}
@@ -90,12 +84,18 @@ function App() {
           setPointsPS={setPointsPs}
           onLogout={handleLogout}
         />
-        <button onClick={handleSave}>Save your progress</button>
-      </>
+        <SaveProgressButton
+          currentUser={currentUser}
+          points={points}
+          levelState={levelState}
+          num={num}
+          pointsPs={pointsPs}
+        />
+      </div>
     );
   } else if (levelState === 2) {
     return (
-      <>
+      <div className={centeredClass}>
         <Level2
           points={points}
           setPoints={setPoints}
@@ -108,12 +108,18 @@ function App() {
           setPointsPS={setPointsPs}
           onLogout={handleLogout}
         />
-        <button onClick={handleSave}>Save your progress</button>
-      </>
+        <SaveProgressButton
+          currentUser={currentUser}
+          points={points}
+          levelState={levelState}
+          num={num}
+          pointsPs={pointsPs}
+        />
+      </div>
     );
   } else if (levelState === 3) {
     return (
-      <>
+      <div className={centeredClass}>
         <Level3
           points={points}
           setPoints={setPoints}
@@ -126,11 +132,21 @@ function App() {
           setPointsPS={setPointsPs}
           onLogout={handleLogout}
         />
-        <button onClick={handleSave}>Save your progress</button>
-      </>
+        <SaveProgressButton
+          currentUser={currentUser}
+          points={points}
+          levelState={levelState}
+          num={num}
+          pointsPs={pointsPs}
+        />
+      </div>
     );
   } else {
-    return <Final />;
+    return (
+      <div className={centeredClass}>
+        <Final />
+      </div>
+    );
   }
 }
 
