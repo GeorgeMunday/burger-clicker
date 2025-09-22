@@ -33,7 +33,10 @@ const Home = ({ isLoggedIn, onStartGame, onLogout }: HomeProps) => {
         <div className="w-full mb-4">
           {authMode === "login" ? <LoginPage /> : <RegisterPage />}
         </div>
-        <button className={backButton} onClick={() => setAuthMode(null)}>
+        <button
+          className={backButton + " mb-4"}
+          onClick={() => setAuthMode(null)}
+        >
           ← Back to Home
         </button>
       </div>
@@ -74,6 +77,15 @@ const Home = ({ isLoggedIn, onStartGame, onLogout }: HomeProps) => {
       <div className="w-[90vw] h-[90vh] max-w-4xl max-h-[900px] rounded-3xl bg-[#e7dbc3] shadow-2xl p-6 sm:p-10 flex flex-col border border-[#7c5c36] overflow-auto">
         <div className="flex flex-col items-center justify-between min-h-full w-full gap-8">
           <GameInfo />
+          <div className="flex flex-col items-center w-full my-4">
+            <div className="flex items-center w-full max-w-md mx-auto my-6">
+              <div className="flex-grow border-t-2 border-[#a6895b]" />
+              <span className="mx-4 text-[#a6895b] font-semibold text-lg select-none">
+                Get Started
+              </span>
+              <div className="flex-grow border-t-2 border-[#a6895b]" />
+            </div>
+          </div>
           {content}
         </div>
       </div>
